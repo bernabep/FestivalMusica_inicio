@@ -369,4 +369,11 @@ h3 {
   color: #FEF46D;
 }
 
+.prueba {
+  text-transform: uppercase;
+  font-size: 2.4rem;
+  color: black;
+  letter-spacing: 1px;
+}
+
 /*# sourceMappingURL=app.css.map */
