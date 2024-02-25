@@ -372,8 +372,18 @@ h3 {
 .prueba {
   text-transform: uppercase;
   font-size: 2.4rem;
-  color: black;
-  letter-spacing: 1px;
+  color: #FEF46D;
+  letter-spacing: 10px;
+  background-color: black;
+  border-radius: 1rem;
+}
+
+.texto {
+  text-transform: uppercase;
+  font-size: 2.4rem;
+  color: blue;
+  letter-spacing: 10px;
+  background-color: black;
 }
 
 /*# sourceMappingURL=app.css.map */
