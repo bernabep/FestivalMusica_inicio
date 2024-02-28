@@ -4,6 +4,19 @@ document.addEventListener("DOMContentLoaded", function () {
 
 function iniciarApp() {
   crearGaleria();
+  scrollNav();
+}
+
+function scrollNav() {
+  const enlaces = document.querySelectorAll(".navegacion-principal a");
+  enlaces.forEach((enlace) => {
+    enlace.addEventListener("click", function (e) {
+      e.preventDefault(); //Elimina el comportamiento por defecto, moverse rapido a la seccion
+      const seccionScroll = e.target.attributes.href.value;
+      const seccion = document.querySelector(seccionScroll);
+      seccion.scrollIntoView({ behavior: "smooth" }); //Con esto configuro como quiero que se mueva el scroll al hacer clic en la seccion
+    });
+  });
 }
 
 function crearGaleria() {
@@ -18,52 +31,48 @@ function crearGaleria() {
         `;
 
     galeria.appendChild(imagen);
-    
+
     imagen.onclick = function () {
       mostrarImagen(i);
-      
-    }
+    };
   }
 }
 
 function mostrarImagen(id) {
-    console.log(id)
-    const imagen = document.createElement("picture");
-    imagen.innerHTML = `
+  console.log(id);
+  const imagen = document.createElement("picture");
+  imagen.innerHTML = `
             <source srcset="build/img/grande/${id}.avif" type="image/avif" />
             <source srcset="build/img/grande/${id}.webp" type="image/webp" />
             <img loading="lazy" width="400" height="600" src="build/img/grande/${id}.jpg" alt="imagen galeria"/>
         `;
 
-    //Crear el Overlay con la Imagen
-    const overlay = document.createElement('DEV');
-    overlay.appendChild(imagen);
-    overlay.classList.add('overlay');
-    overlay.onclick = function(){
-        const body = document.querySelector('body');
-        body.classList.remove('fijar-body')
-        overlay.remove();
-    }
+  //Crear el Overlay con la Imagen
+  const overlay = document.createElement("DEV");
+  overlay.appendChild(imagen);
+  overlay.classList.add("overlay");
+  overlay.onclick = function () {
+    const body = document.querySelector("body");
+    body.classList.remove("fijar-body");
+    overlay.remove();
+  };
 
-    //Boton para cerrar el Modal
-    const cerrarModal = document.createElement('P');
-    cerrarModal.textContent= 'X';
-    cerrarModal.classList.add('btn-cerrar');
-    cerrarModal.onclick= function(){
-        const body = document.querySelector('body');
-        body.classList.remove('fijar-body')
-        overlay.remove();
-    }
+  //Boton para cerrar el Modal
+  const cerrarModal = document.createElement("P");
+  cerrarModal.textContent = "X";
+  cerrarModal.classList.add("btn-cerrar");
+  cerrarModal.onclick = function () {
+    const body = document.querySelector("body");
+    body.classList.remove("fijar-body");
+    overlay.remove();
+  };
 
-    overlay.appendChild(cerrarModal)
+  overlay.appendChild(cerrarModal);
 
-    //
+  //
 
-
-    //Añadirlo al HTML
-    const body = document.querySelector('body');
-    body.appendChild(overlay);
-    body.classList.add('fijar-body')
+  //Añadirlo al HTML
+  const body = document.querySelector("body");
+  body.appendChild(overlay);
+  body.classList.add("fijar-body");
 }
-
-
