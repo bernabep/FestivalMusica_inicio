@@ -3,6 +3,7 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 function iniciarApp() {
+  navegacionFija();
   crearGaleria();
   scrollNav();
 }
@@ -17,6 +18,22 @@ function scrollNav() {
       seccion.scrollIntoView({ behavior: "smooth" }); //Con esto configuro como quiero que se mueva el scroll al hacer clic en la seccion
     });
   });
+}
+
+function navegacionFija(){
+  const barra = document.querySelector('.header');
+  const sobreFestival = document.querySelector('.sobre-festival');
+
+  window.addEventListener('scroll',function(){
+    const posicion = sobreFestival.getBoundingClientRect().bottom
+    console.log(sobreFestival.getBoundingClientRect().y)
+    if(posicion<0){
+      barra.classList.add('fijo')
+    }else{
+      barra.classList.remove('fijo')
+    }
+  })
+
 }
 
 function crearGaleria() {
